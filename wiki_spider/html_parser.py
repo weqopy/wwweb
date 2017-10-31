@@ -28,7 +28,8 @@ class HtmlParser(object):
 
         # //*[@id="mw-content-text"]/div/p[1]
         summary_node = soup.find('div', class_='mw-parser-output').find('p')
-        res_data['summary'] = summary_node.text
+        if summary_node is not None:
+            res_data['summary'] = summary_node.text
 
         return res_data
 
@@ -37,7 +38,8 @@ class HtmlParser(object):
             return None
 
         soup = bs(html_cont, 'lxml')
-        new_urls = self._get_new_urls(page_url, soup)
-        new_data = self._get_new_data(page_url, soup)
+        if soup is not None:
+            new_urls = self._get_new_urls(page_url, soup)
+            new_data = self._get_new_data(page_url, soup)
 
         return new_urls, new_data
