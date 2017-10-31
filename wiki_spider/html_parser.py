@@ -27,9 +27,12 @@ class HtmlParser(object):
         res_data['title'] = title_node.text
 
         # //*[@id="mw-content-text"]/div/p[1]
-        summary_node = soup.find('div', class_='mw-parser-output').find('p')
-        if summary_node is not None:
-            res_data['summary'] = summary_node.text
+        summary_node_b = soup.find('div', class_='mw-parser-output')
+        # 避免"AttributeError: 'NoneType' object has no attribute 'text' & 'find' "错误
+        if summary_node_b is not None:
+            summary_node = summary_node_b.find('p')
+            if summary_node is not None:
+                res_data['summary'] = summary_node.text
 
         return res_data
 
