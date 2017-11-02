@@ -20,6 +20,7 @@ class HtmlOutputer(object):
                 fout.write("<td>{}</td>".format(data['title']))
                 fout.write("<td>{}</td>".format(data['summary']))
                 fout.write("</tr>")
+                fout.write("\n")
 
             fout.write("</table>")
             fout.write("</body>")
